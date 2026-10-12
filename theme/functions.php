@@ -76,3 +76,20 @@ add_action('admin_post_nopriv_infotechs_newsletter', $infotechs_news); add_actio
 /* No emoji script or global styles: the theme ships its own CSS and the static export has no wp-includes. */
 remove_action('wp_head', 'print_emoji_detection_script', 7); remove_action('wp_print_styles', 'print_emoji_styles');
 add_action('wp_enqueue_scripts', function () { wp_dequeue_style('global-styles'); wp_dequeue_style('classic-theme-styles'); }, 20);
+
+/* ---------- Favicons + Open Graph / Twitter cards ---------- */
+add_action('wp_head', function () {
+    $u = fn($p) => esc_url(infotechs_asset('img/' . $p));
+    $ar = infotechs_lang() === 'ar';
+    $title = is_front_page() ? 'Infotechs' : wp_get_document_title();
+    $desc = $ar ? 'إنفوتيك: شركة سعودية رائدة في تنظيم المعارض والمؤتمرات والاجتماعات العلمية وورش العمل، ومقرها الرياض.' : 'Infotechs: Riyadh-based organiser of exhibitions, conferences, scientific meetings and workshops, from the floor plan to the last CME certificate.';
+    if (is_singular('event')) { $desc = wp_strip_all_tags(infotechs_ev(get_the_ID(), 'excerpt')) ?: $desc; }
+    $img = (is_singular('event') && has_post_thumbnail()) ? get_the_post_thumbnail_url(null, 'large') : $u('og.jpg');
+    $url = is_singular() ? get_permalink() : home_url(add_query_arg([], $GLOBALS['wp']->request ?? ''));
+    echo "\n<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"{$u('favicon-32.png')}\">\n<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"{$u('favicon-192.png')}\">\n<link rel=\"apple-touch-icon\" href=\"{$u('apple-touch-icon.png')}\">\n<meta name=\"theme-color\" content=\"#0e0b1f\">\n";
+    echo '<meta name="description" content="' . esc_attr($desc) . "\">\n";
+    echo '<meta property="og:type" content="website"><meta property="og:site_name" content="Infotechs"><meta property="og:locale" content="' . ($ar ? 'ar_SA' : 'en_US') . "\">\n";
+    echo '<meta property="og:title" content="' . esc_attr($title) . '"><meta property="og:description" content="' . esc_attr($desc) . '"><meta property="og:url" content="' . esc_url($url) . "\">\n";
+    echo '<meta property="og:image" content="' . esc_url($img) . '"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' . "\n";
+    echo '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="' . esc_attr($title) . '"><meta name="twitter:description" content="' . esc_attr($desc) . '"><meta name="twitter:image" content="' . esc_url($img) . "\">\n";
+}, 1);

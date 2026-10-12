@@ -7,8 +7,8 @@ English pages land at <base>/..., Arabic pages at <base>/ar/...
 import argparse, os, re, shutil, sys, urllib.request, urllib.parse, http.cookiejar
 
 SRC = 'http://localhost:8088'
-ap = argparse.ArgumentParser(); ap.add_argument('--base', default='/infotechs-site'); ap.add_argument('--out', default='docs')
-a = ap.parse_args(); BASE = a.base.rstrip('/'); OUT = a.out
+ap = argparse.ArgumentParser(); ap.add_argument('--base', default='/infotechs-site'); ap.add_argument('--out', default='docs'); ap.add_argument('--site', default='https://wesamhamad.github.io')
+a = ap.parse_args(); BASE = a.base.rstrip('/'); OUT = a.out; SITE = a.site.rstrip('/')
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def fetch(path, lang):
@@ -36,6 +36,8 @@ def rewrite(html, lang):
     # internal links -> language tree
     html = re.sub(r'(href|src|action)="http://localhost:8088(/[^"]*)"', lambda m: f'{m.group(1)}="{prefix}{m.group(2)}"', html)
     html = html.replace('http://localhost:8088', prefix)
+    # social cards need absolute URLs
+    html = re.sub(r'(property="og:(?:image|url)"|name="twitter:image") content="/', lambda m: f'{m.group(1)} content="{SITE}/', html)
     return html
 
 def write(path, lang, html):
