@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wp
+      MARIADB_PASSWORD: wp
+      MARIADB_ROOT_PASSWORD: root
+    volumes: [db:/var/lib/mysql]
+  wordpress:
+    image: wordpress:latest
+    depends_on: [db]
+    ports: ["8088:80"]
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp:/var/www/html
+      - ./theme:/var/www/html/wp-content/themes/infotechs
+  cli:
+    image: wordpress:cli
+    depends_on: [db, wordpress]
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp:/var/www/html
+      - ./theme:/var/www/html/wp-content/themes/infotechs
+    entrypoint: ["wp"]
+    command: ["--info"]
+volumes: { db: {}, wp: {} }
