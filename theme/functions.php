@@ -72,3 +72,7 @@ $infotechs_news = function () {
     infotechs_form_redirect('nl');
 };
 add_action('admin_post_nopriv_infotechs_newsletter', $infotechs_news); add_action('admin_post_infotechs_newsletter', $infotechs_news);
+
+/* No emoji script or global styles: the theme ships its own CSS and the static export has no wp-includes. */
+remove_action('wp_head', 'print_emoji_detection_script', 7); remove_action('wp_print_styles', 'print_emoji_styles');
+add_action('wp_enqueue_scripts', function () { wp_dequeue_style('global-styles'); wp_dequeue_style('classic-theme-styles'); }, 20);
