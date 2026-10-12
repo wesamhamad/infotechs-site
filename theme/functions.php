@@ -2,7 +2,7 @@
 /**
  * Infotechs theme bootstrap.
  */
-define('INFOTECHS_VER', '0.5.4');
+define('INFOTECHS_VER', '0.5.5');
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
