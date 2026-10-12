@@ -36,7 +36,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </style>
 
 <link rel='stylesheet' id='infotechs-fonts-css' href='https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&#038;family=Manrope:wght@400;500;600&#038;family=JetBrains+Mono:wght@400;500&#038;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&#038;display=swap' media='all' />
-<link rel='stylesheet' id='infotechs-main-css' href='/infotechs-site/theme/assets/css/main.css?ver=0.5.7' media='all' />
+<link rel='stylesheet' id='infotechs-main-css' href='/infotechs-site/theme/assets/css/main.css?ver=0.5.8' media='all' />
 <link rel="https://api.w.org/" href="/infotechs-site/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="/infotechs-site/wp-json/wp/v2/pages/79" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/infotechs-site/xmlrpc.php?rsd" />
 <meta name="generator" content="WordPress 7.1.3" />
 <link rel="canonical" href="/infotechs-site/contacts/" />
@@ -105,15 +105,15 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 
         <fieldset class="bstep" data-step="1">
           <h2>When and where?</h2>
-          <div class="row2"><label><span>Target month</span><input type="month" name="when"></label><label><span>City</span><input type="text" name="city" placeholder="Riyadh"></label></div>
-          <label><span>What do you need from us?</span><textarea name="message" rows="4" placeholder="Scientific programme, sponsors, booths, CME, streaming..."></textarea></label>
+          <div class="row2"><label><span>Target month *</span><input type="month" name="when" required></label><label><span>City *</span><input type="text" name="city" placeholder="Riyadh" required></label></div>
+          <label><span>What do you need from us? *</span><textarea name="message" rows="4" required placeholder="Scientific programme, sponsors, booths, CME, streaming..."></textarea></label>
           <div class="bnav"><button class="btn btn-ghost-dark" type="button" data-prev>← Back</button><button class="btn btn-cyan" type="button" data-next>Next →</button></div>
         </fieldset>
 
         <fieldset class="bstep" data-step="2">
           <h2>How do we reach you?</h2>
-          <label><span>Full name</span><input type="text" name="name" required></label>
-          <div class="row2"><label><span>Email address</span><input type="email" name="email" required></label><label><span>Phone number</span><input type="tel" name="phone"></label></div>
+          <label><span>Full name *</span><input type="text" name="name" required></label>
+          <div class="row2"><label><span>Email address *</span><input type="email" name="email" required></label><label><span>Phone number *</span><input type="tel" name="phone" required></label></div>
           <p class="brief-sum hint-mono" id="briefSum"></p>
           <div class="bnav"><button class="btn btn-ghost-dark" type="button" data-prev>← Back</button><button class="btn btn-cyan magnetic" type="submit">Send the brief</button></div>
         </fieldset>
@@ -171,6 +171,6 @@ window.INFOTECHS_L = {date: "Date", venue: "Venue", scale: "Scale"};</script>
 var INFOTECHS = {"logo":"/infotechs-site/theme/img/logo.webp","theme":"/infotechs-site/wp-content/themes/infotechs","lang":"en","plan":{"hall":"HALL A \u00b7 RIYADH","drawing":"DRAWING FLOOR PLAN","assembling":"ASSEMBLING","ready":"READY","booths":"BOOTHS"}};
 //# sourceURL=infotechs-main-js-extra
 </script>
-<script id="infotechs-main-js" src="/infotechs-site/theme/assets/js/main.js?ver=0.5.7"></script>
+<script id="infotechs-main-js" src="/infotechs-site/theme/assets/js/main.js?ver=0.5.8"></script>
 </body>
 </html>

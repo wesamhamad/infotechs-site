@@ -35,15 +35,15 @@
 
         <fieldset class="bstep" data-step="1">
           <h2><?php echo __t('bf.s2'); ?></h2>
-          <div class="row2"><label><span><?php echo __t('bf.when'); ?></span><input type="month" name="when"></label><label><span><?php echo __t('bf.city'); ?></span><input type="text" name="city" placeholder="Riyadh"></label></div>
-          <label><span><?php echo __t('bf.needs'); ?></span><textarea name="message" rows="4" placeholder="<?php echo esc_attr(__t('bf.needs.ph')); ?>"></textarea></label>
+          <div class="row2"><label><span><?php echo __t('bf.when'); ?> *</span><input type="month" name="when" required></label><label><span><?php echo __t('bf.city'); ?> *</span><input type="text" name="city" placeholder="Riyadh" required></label></div>
+          <label><span><?php echo __t('bf.needs'); ?> *</span><textarea name="message" rows="4" required placeholder="<?php echo esc_attr(__t('bf.needs.ph')); ?>"></textarea></label>
           <div class="bnav"><button class="btn btn-ghost-dark" type="button" data-prev><?php echo __t('bf.back'); ?></button><button class="btn btn-cyan" type="button" data-next><?php echo __t('bf.next'); ?></button></div>
         </fieldset>
 
         <fieldset class="bstep" data-step="2">
           <h2><?php echo __t('bf.s3'); ?></h2>
-          <label><span><?php echo __t('f.name'); ?></span><input type="text" name="name" required></label>
-          <div class="row2"><label><span><?php echo __t('f.email'); ?></span><input type="email" name="email" required></label><label><span><?php echo __t('f.phone'); ?></span><input type="tel" name="phone"></label></div>
+          <label><span><?php echo __t('f.name'); ?> *</span><input type="text" name="name" required></label>
+          <div class="row2"><label><span><?php echo __t('f.email'); ?> *</span><input type="email" name="email" required></label><label><span><?php echo __t('f.phone'); ?> *</span><input type="tel" name="phone" required></label></div>
           <p class="brief-sum hint-mono" id="briefSum"></p>
           <div class="bnav"><button class="btn btn-ghost-dark" type="button" data-prev><?php echo __t('bf.back'); ?></button><button class="btn btn-cyan magnetic" type="submit"><?php echo __t('bf.send'); ?></button></div>
         </fieldset>
