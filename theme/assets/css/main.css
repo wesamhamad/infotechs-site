@@ -284,7 +284,10 @@ html.lenis,html.lenis body{height:auto}
   .burger{display:flex}
   .header-actions .btn,.header-actions .lang{display:none}
   .site-nav{display:block;position:fixed;inset:0;background:var(--hall);color:#fff;padding:110px 28px 40px;transform:translateY(-100%);opacity:0;transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .35s;z-index:1;visibility:hidden}
-  .site-header.menu-open .site-nav{visibility:visible}
+  .site-header.menu-open .site-nav{visibility:visible;pointer-events:auto}
+  .site-nav{pointer-events:none}
+  .site-header.solid{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(255,255,255,.97)}
+  .site-header.solid.over-dark{background:rgba(14,11,31,.95)}
   .site-header .wrap{position:relative;z-index:2}
   .site-header.menu-open .site-nav{transform:none;opacity:1}
   .site-nav ul{flex-direction:column;gap:22px;font-family:var(--display);font-size:28px;font-weight:700}
