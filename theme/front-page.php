@@ -47,10 +47,10 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
 
 <div class="stats" id="stats"><img class="stats-bg" id="statsBg" src="<?php echo $img('saam-2024-23.webp'); ?>" alt="">
   <div class="wrap">
-    <div class="stat"><b data-count="60">0</b><span><?php echo __t('stat.events'); ?></span></div>
+    <div class="stat"><b data-count="200" data-prefix="+">0</b><span><?php echo __t('stat.projects'); ?></span></div>
+    <div class="stat"><b data-count="30" data-prefix="+">0</b><span><?php echo __t('stat.clients'); ?></span></div>
     <div class="stat"><b data-count="2500" data-prefix="+">0</b><span><?php echo __t('stat.participants'); ?></span></div>
     <div class="stat"><b data-count="40" data-prefix="+">0</b><span><?php echo __t('stat.exhibitors'); ?></span></div>
-    <div class="stat"><b data-count="19">0</b><span><?php echo __t('stat.cme'); ?></span></div>
   </div>
 </div>
 
@@ -84,8 +84,8 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
 <div class="clients" id="clients">
   <div class="wrap"><span class="eyebrow"><?php echo __t('partners'); ?></span><span class="hint-mono"><?php echo __t('partners.hint'); ?></span></div>
   <div class="marquee"><div class="track" id="logoTrack">
-    <?php foreach (['c-merz.webp' => 'Merz', 'c-galderma.webp' => 'Galderma', 'c-dermacity.webp' => 'Dermacity', 'c-ame.webp' => 'AME', 'c-saslt.png' => 'SASLT', 'c-ssdds.png' => 'SSDDS', 'c-1.png' => 'Partner', 'c-2.png' => 'Partner'] as $f => $alt) : ?>
-      <span class="logo-card"><img src="<?php echo $img($f); ?>" alt="<?php echo esc_attr($alt); ?>" loading="lazy"></span>
+    <?php foreach (['SSDDS', 'Saudi Society for Rheumatology', 'Partner', 'SSDDS Society', 'Partner', 'Partner', 'SASLT', 'Dermacity', 'Merz', 'Galderma', 'AME'] as $i => $alt) : ?>
+      <span class="logo-card"><img src="<?php echo $img(sprintf('clients/l-%02d.webp', $i + 1)); ?>" alt="<?php echo esc_attr($alt); ?>" loading="lazy"></span>
     <?php endforeach; ?>
   </div></div>
 </div>
@@ -98,7 +98,7 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
     </div>
     <div class="events-track" id="evTrack">
       <?php
-      $q = new WP_Query(['post_type' => 'event', 'posts_per_page' => 12, 'orderby' => 'date', 'order' => 'DESC']);
+      $q = new WP_Query(['post_type' => 'event', 'posts_per_page' => 12, 'meta_key' => 'featured_order', 'orderby' => ['meta_value_num' => 'ASC', 'date' => 'DESC'], 'meta_query' => ['relation' => 'OR', ['key' => 'featured_order', 'compare' => 'EXISTS'], ['key' => 'featured_order', 'compare' => 'NOT EXISTS']]]);
       $n = 0; $total = wp_count_posts('event')->publish;
       while ($q->have_posts()) : $q->the_post(); $id = get_the_ID(); $n++;
         $date = get_post_meta($id, 'event_date', true); preg_match('/\d{4}/', $date, $yr); ?>

@@ -21,7 +21,7 @@ add_action('init', function () {
 add_action('add_meta_boxes', function () {
     add_meta_box('event_details', 'Event details', function ($post) {
         wp_nonce_field('event_details', 'event_details_nonce');
-        $fields = ['event_type' => 'Type (Conference / Workshop / Virtual)', 'event_date' => 'Date', 'event_venue' => 'Venue', 'event_scale' => 'Scale (participants, CME hours...)', 'title_ar' => 'العنوان بالعربي', 'excerpt_ar' => 'الوصف بالعربي', 'event_type_ar' => 'النوع بالعربي', 'event_date_ar' => 'التاريخ بالعربي', 'event_venue_ar' => 'المكان بالعربي', 'event_scale_ar' => 'الحجم بالعربي'];
+        $fields = ['event_type' => 'Type (Conference / Workshop / Virtual)', 'event_date' => 'Date', 'event_venue' => 'Venue', 'event_scale' => 'Scale (participants, CME hours...)', 'title_ar' => 'العنوان بالعربي', 'excerpt_ar' => 'الوصف بالعربي', 'event_type_ar' => 'النوع بالعربي', 'featured_order' => 'Home page order (1-8, empty = not featured)', 'event_date_ar' => 'التاريخ بالعربي', 'event_venue_ar' => 'المكان بالعربي', 'event_scale_ar' => 'الحجم بالعربي'];
         foreach ($fields as $key => $label) {
             $val = esc_attr(get_post_meta($post->ID, $key, true));
             echo "<p><label for='$key'><strong>$label</strong></label><br><input type='text' id='$key' name='$key' value='$val' style='width:100%'></p>";
@@ -31,7 +31,9 @@ add_action('add_meta_boxes', function () {
 add_action('save_post_event', function ($post_id) {
     if (!isset($_POST['event_details_nonce']) || !wp_verify_nonce($_POST['event_details_nonce'], 'event_details')) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    foreach (['event_type', 'event_date', 'event_venue', 'event_scale', 'title_ar', 'excerpt_ar', 'event_type_ar', 'event_date_ar', 'event_venue_ar', 'event_scale_ar'] as $key) {
-        if (isset($_POST[$key])) update_post_meta($post_id, $key, sanitize_text_field(wp_unslash($_POST[$key])));
+    foreach (['event_type', 'event_date', 'event_venue', 'event_scale', 'title_ar', 'excerpt_ar', 'event_type_ar', 'event_date_ar', 'event_venue_ar', 'event_scale_ar', 'featured_order'] as $key) {
+        if (!isset($_POST[$key])) continue;
+        $v = sanitize_text_field(wp_unslash($_POST[$key]));
+        if ($key === 'featured_order' && $v === '') delete_post_meta($post_id, $key); else update_post_meta($post_id, $key, $v);
     }
 });

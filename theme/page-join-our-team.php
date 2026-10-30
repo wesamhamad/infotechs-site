@@ -9,7 +9,7 @@ $roles = ['jn.p1' => 'jn.d1', 'jn.p2' => 'jn.d2', 'jn.p3' => 'jn.d3', 'jn.p4' =>
         <h1 class="page-title"><?php echo __t('jn.h1'); ?></h1>
         <p class="lead"><?php echo __t('jn.p'); ?></p>
         <div class="join-facts">
-          <div><b data-count="60">0</b><span><?php echo __t('stat.events'); ?></span></div>
+          <div><b data-count="200" data-prefix="+">0</b><span><?php echo __t('stat.projects'); ?></span></div>
           <div><b data-count="8">0</b><span><?php echo __t('jn.f.team'); ?></span></div>
           <div><b data-count="4">0</b><span><?php echo __t('jn.f.roles'); ?></span></div>
         </div>
