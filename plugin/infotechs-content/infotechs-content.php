@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Infotechs Content
  * Description: Registers the "event" post type and its fields so event data stays independent of the active theme. Also provides an admin-only theme installer from the project repository.
- * Version: 1.0
+ * Version: 1.1
  */
 if (!defined('ABSPATH')) exit;
 define('INFOTECHS_CONTENT_PLUGIN', true);
@@ -17,7 +17,7 @@ add_action('init', function () {
             'edit_item' => 'Edit event', 'menu_name' => 'Events',
         ],
         'public' => true, 'has_archive' => true, 'menu_icon' => 'dashicons-calendar-alt',
-        'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
+        'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'],
         'rewrite' => ['slug' => 'events'], 'show_in_rest' => true,
     ]);
     foreach (['event_date', 'event_venue', 'event_scale', 'event_type', 'title_ar', 'excerpt_ar', 'event_date_ar', 'event_venue_ar', 'event_scale_ar', 'event_type_ar', 'featured_order'] as $key) {
