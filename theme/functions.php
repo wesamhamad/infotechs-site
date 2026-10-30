@@ -28,7 +28,7 @@ add_action('wp_enqueue_scripts', function () {
     ]);
 });
 
-require get_template_directory() . '/inc/events.php';
+if (!defined('INFOTECHS_CONTENT_PLUGIN')) require get_template_directory() . '/inc/events.php';
 require get_template_directory() . '/inc/i18n.php';
 
 /** Small helper: theme asset URL. */
