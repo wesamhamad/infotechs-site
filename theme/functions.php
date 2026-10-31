@@ -2,7 +2,7 @@
 /**
  * Infotechs theme bootstrap.
  */
-define('INFOTECHS_VER', '0.7.0');
+define('INFOTECHS_VER', '0.7.1');
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -48,7 +48,7 @@ function infotechs_post(string $k): string { return sanitize_text_field(wp_unsla
 $infotechs_contact = function () {
     infotechs_form_guard();
     $body = sprintf("Name: %s\nEmail: %s\nPhone: %s\nSubject: %s\nEvent type: %s\nAttendees: %s\nWhen: %s\nCity: %s\n\n%s", infotechs_post('name'), infotechs_post('email'), infotechs_post('phone'), infotechs_post('subject'), infotechs_post('type'), infotechs_post('attendees'), infotechs_post('when'), infotechs_post('city'), sanitize_textarea_field(wp_unslash($_POST['message'] ?? '')));
-    $ok = wp_mail(get_option('admin_email'), '[infotechs.co] Contact: ' . infotechs_post('subject'), $body, ['Reply-To: ' . infotechs_post('email')]);
+    $ok = wp_mail('info@infotechs.co', '[infotechs.co] Contact: ' . infotechs_post('subject'), $body, ['Reply-To: ' . infotechs_post('email')]);
     infotechs_form_redirect($ok ? 'ok' : 'err');
 };
 add_action('admin_post_nopriv_infotechs_contact', $infotechs_contact); add_action('admin_post_infotechs_contact', $infotechs_contact);
@@ -61,7 +61,7 @@ $infotechs_apply = function () {
         if (empty($up['error'])) $att[] = $up['file'];
     }
     $body = sprintf("Name: %s %s\nEmail: %s\nPhone: %s\nPosition: %s\n\n%s", infotechs_post('first'), infotechs_post('last'), infotechs_post('email'), infotechs_post('phone'), infotechs_post('position'), sanitize_textarea_field(wp_unslash($_POST['cover'] ?? '')));
-    $ok = wp_mail(get_option('admin_email'), '[infotechs.co] Application: ' . infotechs_post('position'), $body, ['Reply-To: ' . infotechs_post('email')], $att);
+    $ok = wp_mail('info@infotechs.co', '[infotechs.co] Application: ' . infotechs_post('position'), $body, ['Reply-To: ' . infotechs_post('email')], $att);
     infotechs_form_redirect($ok ? 'ok' : 'err');
 };
 add_action('admin_post_nopriv_infotechs_apply', $infotechs_apply); add_action('admin_post_infotechs_apply', $infotechs_apply);
