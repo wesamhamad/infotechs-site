@@ -17,9 +17,9 @@ $team = [
     </div>
 
     <div class="about-pillars" id="pillars">
-      <?php foreach ([['ab.mission', 'saam-2024-23.webp'], ['ab.vision', 'saam-2024-24.webp'], ['ab.team', 'saam-2022-03.webp']] as $i => [$k, $f]) : ?>
+      <?php foreach ([['ab.mission', 'sm/saam-2024-23.webp'], ['ab.vision', 'sm/saam-2024-24.webp'], ['ab.team', 'sm/saam-2022-03.webp']] as $i => [$k, $f]) : ?>
       <article class="pillar" style="--i:<?php echo $i; ?>" tabindex="0">
-        <div class="pillar-img"><img src="<?php echo $img($f); ?>" alt="" loading="lazy"></div>
+        <div class="pillar-img"><img src="<?php echo $img($f); ?>" alt="" loading="lazy" decoding="async"></div>
         <span class="pillar-n">0<?php echo $i + 1; ?></span>
         <div class="pillar-body"><span class="k"><?php echo __t("$k.k"); ?></span><p><?php echo __t($k); ?></p></div>
       </article>
@@ -32,7 +32,7 @@ $team = [
         <?php foreach ($team as $i => [$k, $f]) : $name = __t("$k.n"); ?>
         <figure class="member" style="--i:<?php echo $i; ?>">
           <div class="member-img">
-            <?php if ($f) : ?><img src="<?php echo $img($f); ?>" alt="<?php echo esc_attr($name); ?>" loading="lazy">
+            <?php if ($f) : ?><img src="<?php echo $img($f); ?>" alt="<?php echo esc_attr($name); ?>" loading="lazy" decoding="async">
             <?php else : ?><span class="initials"><?php echo esc_html(mb_substr($name, 0, 1)); ?></span><?php endif; ?>
           </div>
           <figcaption><b><?php echo esc_html($name); ?></b><span><?php echo __t("$k.r"); ?></span></figcaption>

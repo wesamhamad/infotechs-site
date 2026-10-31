@@ -2,7 +2,7 @@
 /**
  * Infotechs theme bootstrap.
  */
-define('INFOTECHS_VER', '0.6.0');
+define('INFOTECHS_VER', '0.7.0');
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -14,7 +14,7 @@ add_action('after_setup_theme', function () {
 
 add_action('wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
-    wp_enqueue_style('infotechs-fonts', 'https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap', [], null);
+    wp_enqueue_style('infotechs-fonts', 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap', [], null);
     wp_enqueue_style('infotechs-main', $uri . '/assets/css/main.css', [], INFOTECHS_VER);
     wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js', [], '3.12.5', true);
     wp_enqueue_script('gsap-st', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js', ['gsap'], '3.12.5', true);

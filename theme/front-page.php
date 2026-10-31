@@ -12,7 +12,7 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
 <section class="hero" id="hero">
   <div class="hero-pin">
     <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="<?php echo $img('hero-poster.jpg'); ?>">
-      <source src="<?php echo $img('hero.mp4'); ?>" type="video/mp4">
+      <source src="<?php echo $img('hero-sm.mp4'); ?>" type="video/mp4">
     </video>
     <svg class="hero-mask" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs><mask id="wordMask"><rect width="100%" height="100%" fill="#fff"/><text id="maskWord" x="55%" y="52%" text-anchor="middle" dominant-baseline="middle" fill="#000">INFOTECHS</text></mask></defs>
@@ -45,7 +45,7 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
   </div>
 </section>
 
-<div class="stats" id="stats"><img class="stats-bg" id="statsBg" src="<?php echo $img('saam-2024-23.webp'); ?>" alt="">
+<div class="stats" id="stats"><img class="stats-bg" id="statsBg" src="<?php echo $img('sm/saam-2024-23.webp'); ?>" alt="" loading="lazy" decoding="async">
   <div class="wrap">
     <div class="stat"><b data-count="200" data-prefix="+">0</b><span><?php echo __t('stat.projects'); ?></span></div>
     <div class="stat"><b data-count="30" data-prefix="+">0</b><span><?php echo __t('stat.clients'); ?></span></div>
@@ -66,7 +66,7 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
       ];
       foreach ($services as $i => [$title, $text, $clip, $tags]) : ?>
       <article class="card stack-card" style="--i:<?php echo $i; ?>" tabindex="0">
-        <video class="card-video" muted loop playsinline preload="metadata" poster="<?php echo $img($clip . '-poster.jpg'); ?>"><source src="<?php echo $img($clip . '.mp4'); ?>" type="video/mp4"></video>
+        <video class="card-video" muted loop playsinline preload="none" poster="<?php echo $img($clip . '-poster.jpg'); ?>"><source src="<?php echo $img($clip . '-sm.mp4'); ?>" type="video/mp4"></video>
         <span class="num">0<?php echo $i + 1; ?> / 03</span>
         <div class="body">
           <h3><?php echo esc_html($title); ?></h3>
@@ -109,7 +109,7 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
         data-img="<?php echo esc_url(get_the_post_thumbnail_url($id, 'large')); ?>" data-link="<?php echo esc_url(get_permalink()); ?>">
         <span class="year"><?php echo esc_html($yr[0] ?? ''); ?></span>
         <span class="tag"><?php echo esc_html(infotechs_ev($id, 'event_type')); ?></span>
-        <?php the_post_thumbnail('medium_large', ['loading' => 'eager']); ?>
+        <?php the_post_thumbnail('medium_large', ['loading' => $n <= 3 ? 'eager' : 'lazy', 'decoding' => 'async']); ?>
         <div class="meta"><b><?php echo esc_html(infotechs_ev($id, 'title')); ?></b><small><?php echo esc_html(infotechs_ev($id, 'event_date') . ' · ' . infotechs_ev($id, 'event_venue')); ?></small></div>
       </article>
       <?php endwhile; wp_reset_postdata(); ?>
@@ -123,10 +123,10 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
     <div class="approach-visual">
       <div class="visual-card">
         <div class="phase-imgs">
-          <img class="ph ph-0 on" src="<?php echo $img('saam-2024-24.webp'); ?>" alt="">
-          <img class="ph ph-1" src="<?php echo $img('saam-2024-07.webp'); ?>" alt="">
-          <img class="ph ph-2" src="<?php echo $img('saam-2024-17.webp'); ?>" alt="">
-          <img class="ph ph-3" src="<?php echo $img('saam-2024-23.webp'); ?>" alt="">
+          <img class="ph ph-0 on" src="<?php echo $img('sm/saam-2024-24.webp'); ?>" alt="" loading="lazy" decoding="async">
+          <img class="ph ph-1" src="<?php echo $img('sm/saam-2024-07.webp'); ?>" alt="" loading="lazy" decoding="async">
+          <img class="ph ph-2" src="<?php echo $img('sm/saam-2024-17.webp'); ?>" alt="" loading="lazy" decoding="async">
+          <img class="ph ph-3" src="<?php echo $img('sm/saam-2024-23.webp'); ?>" alt="" loading="lazy" decoding="async">
         </div>
         <div class="visual-label"><span class="k" id="phaseK"><?php echo __t('phase'); ?> 1</span><b id="phaseT"><?php echo __t('ap1.t'); ?></b></div>
       </div>
@@ -153,7 +153,7 @@ $img = fn($p) => esc_url(infotechs_asset('img/' . $p));
     ];
     foreach ($cols as $ci => $col) : ?>
     <div class="gcol" data-speed="<?php echo [0.8, 1.25, 0.95][$ci]; ?>">
-      <?php foreach ($col as $f) : ?><figure><img src="<?php echo $img($f); ?>" alt="SAAM conference, Riyadh" loading="lazy"></figure><?php endforeach; ?>
+      <?php foreach ($col as $f) : ?><figure><img src="<?php echo $img('sm/' . $f); ?>" alt="SAAM conference, Riyadh" loading="lazy" decoding="async"></figure><?php endforeach; ?>
     </div>
     <?php endforeach; ?>
   </div>

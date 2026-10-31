@@ -13,13 +13,13 @@ $pattern = [[4, 2], [2, 1], [2, 1], [2, 2], [2, 1], [2, 1], [3, 1], [3, 2], [3, 
     <div class="gal-counter" aria-hidden="true"><b id="galSeen">001</b><span>/ <?php echo str_pad($n, 3, '0', STR_PAD_LEFT); ?></span><small><?php echo __t('gp.seen'); ?></small></div>
   </div>
   <div class="gal-strip" aria-hidden="true"><div class="gal-strip-track" id="galStrip">
-    <?php foreach (array_slice($files, 0, 14) as $f) : ?><img src="<?php echo $u($f); ?>" alt="" loading="lazy"><?php endforeach; ?>
+    <?php foreach (array_slice($files, 0, 14) as $f) : ?><img src="<?php echo esc_url(infotechs_asset('img/sm/' . basename($f))); ?>" alt="" loading="lazy" decoding="async"><?php endforeach; ?>
   </div></div>
   <div class="wrap">
     <div class="mosaic" id="mosaic">
       <?php foreach ($files as $i => $f) : [$cs, $rs] = $pattern[$i % count($pattern)]; ?>
       <figure class="tile" style="--cs:<?php echo $cs; ?>;--rs:<?php echo $rs; ?>" data-i="<?php echo $i; ?>">
-        <a href="<?php echo $u($f); ?>" data-light><img src="<?php echo $u($f); ?>" alt="Infotechs event photo <?php echo $i + 1; ?>" loading="lazy"><span class="tn"><?php echo str_pad($i + 1, 3, '0', STR_PAD_LEFT); ?></span></a>
+        <a href="<?php echo $u($f); ?>" data-light><img src="<?php echo esc_url(infotechs_asset('img/sm/' . basename($f))); ?>" alt="Infotechs event photo <?php echo $i + 1; ?>" loading="lazy" decoding="async"><span class="tn"><?php echo str_pad($i + 1, 3, '0', STR_PAD_LEFT); ?></span></a>
       </figure>
       <?php endforeach; ?>
     </div>

@@ -108,7 +108,7 @@
         ctx.save(); ctx.globalAlpha = 1 - fly;
         ctx.setLineDash([bw * 2 + bh * 2, 1e6]); ctx.lineDashOffset = -(1 - clamp(drawP / .35, 0, 1)) * (bw * 2 + bh * 2);
         ctx.strokeStyle = 'rgba(88,199,238,.9)'; ctx.lineWidth = 1.5; ctx.strokeRect(bx, by, bw, bh); ctx.setLineDash([]);
-        ctx.fillStyle = 'rgba(143,135,196,.9)'; ctx.font = '11px JetBrains Mono, monospace'; ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(143,135,196,.9)'; ctx.font = '11px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
         if (drawP > .35) { ctx.fillText('120 m', bx + bw / 2, by - 10); ctx.save(); ctx.translate(bx - 12, by + bh / 2); ctx.rotate(-Math.PI / 2); ctx.fillText('64 m', 0, 0); ctx.restore(); ctx.fillText('ENTRANCE', bx + bw / 2, by + bh + 18); }
         if (drawP > .5) { ctx.strokeStyle = 'rgba(88,199,238,.7)'; ctx.beginPath(); ctx.moveTo(bx + bw / 2, by + bh + 30); ctx.lineTo(bx + bw / 2, by + bh + 4); ctx.stroke(); }
         ctx.restore();
@@ -121,7 +121,7 @@
         ctx.save(); ctx.globalAlpha = appear * (1 - clamp((flyP - .7) / .3, 0, 1));
         ctx.fillStyle = colour + (hov ? .75 : .18 + fly * .72) + ')'; ctx.strokeStyle = colour + '.95)'; ctx.lineWidth = hov ? 2 : 1;
         ctx.beginPath(); ctx.roundRect(x, y, w, h, 3 + fly * (b.ts / 2 - 3)); ctx.fill(); ctx.stroke();
-        if (fly < .3 && w > 40) { ctx.globalAlpha = appear * (1 - fly / .3); ctx.fillStyle = 'rgba(230,226,255,.85)'; ctx.font = '10px JetBrains Mono, monospace'; ctx.textAlign = 'left'; ctx.fillText(b.id, x + 6, y + 14); if (b.big) { ctx.fillStyle = 'rgba(88,199,238,.9)'; ctx.fillText('SPONSOR', x + 6, y + h - 7); } }
+        if (fly < .3 && w > 40) { ctx.globalAlpha = appear * (1 - fly / .3); ctx.fillStyle = 'rgba(230,226,255,.85)'; ctx.font = '10px IBM Plex Mono, monospace'; ctx.textAlign = 'left'; ctx.fillText(b.id, x + 6, y + 14); if (b.big) { ctx.fillStyle = 'rgba(88,199,238,.9)'; ctx.fillText('SPONSOR', x + 6, y + h - 7); } }
         ctx.restore();
       });
       if (drawP > .6 && fly < 1) {

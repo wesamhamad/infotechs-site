@@ -15,9 +15,9 @@ $roles = ['jn.p1' => 'jn.d1', 'jn.p2' => 'jn.d2', 'jn.p3' => 'jn.d3', 'jn.p4' =>
         </div>
       </div>
       <div class="join-collage" id="collage">
-        <img src="<?php echo $img('saam-2024-24.webp'); ?>" alt="" data-depth=".6">
-        <img src="<?php echo $img('saam-2023-12.webp'); ?>" alt="" data-depth="1.2">
-        <img src="<?php echo $img('saam-2022-03.webp'); ?>" alt="" data-depth=".9">
+        <img src="<?php echo $img('sm/saam-2024-24.webp'); ?>" alt="" loading="lazy" decoding="async" data-depth=".6">
+        <img src="<?php echo $img('sm/saam-2023-12.webp'); ?>" alt="" loading="lazy" decoding="async" data-depth="1.2">
+        <img src="<?php echo $img('sm/saam-2022-03.webp'); ?>" alt="" loading="lazy" decoding="async" data-depth=".9">
       </div>
     </div>
   </section>
