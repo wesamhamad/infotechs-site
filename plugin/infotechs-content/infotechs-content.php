@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Infotechs Content
  * Description: Registers the "event" post type and its fields so event data stays independent of the active theme. Also provides an admin-only theme installer from the project repository.
- * Version: 1.1
+ * Version: 1.2
  */
 if (!defined('ABSPATH')) exit;
 define('INFOTECHS_CONTENT_PLUGIN', true);
@@ -62,4 +62,18 @@ add_action('admin_post_infotechs_install_theme', function () {
     $ok = rename($src, $dst); $wp_filesystem->delete($tmp, true);
     $t = wp_get_theme('infotechs');
     echo json_encode(['ok' => $ok && $t->exists(), 'name' => $t->get('Name'), 'version' => $t->get('Version'), 'active' => get_stylesheet()]); exit;
+});
+
+/* Admin-only live preview of the new theme: ?infotechs_preview=1 sets a cookie, ?infotechs_preview=0 clears it. Visitors never see it. */
+add_action('init', function () {
+    if (!isset($_GET['infotechs_preview']) || !current_user_can('switch_themes')) return;
+    $on = $_GET['infotechs_preview'] === '1';
+    setcookie('infotechs_preview', $on ? '1' : '', $on ? time() + DAY_IN_SECONDS : time() - 3600, '/'); $_COOKIE['infotechs_preview'] = $on ? '1' : '';
+}, 1);
+add_action('plugins_loaded', function () {
+    if (empty($_COOKIE['infotechs_preview']) && (($_GET['infotechs_preview'] ?? '') !== '1')) return;
+    if (!function_exists('wp_get_current_user') || !current_user_can('switch_themes') || is_admin()) return;
+    if (!wp_get_theme('infotechs')->exists()) return;
+    add_filter('template', fn() => 'infotechs'); add_filter('stylesheet', fn() => 'infotechs');
+    add_filter('pre_option_template', fn() => 'infotechs'); add_filter('pre_option_stylesheet', fn() => 'infotechs');
 });
